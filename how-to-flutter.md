@@ -19,4 +19,7 @@ Mac:
 #### How to run project
 
 - Open the iPhone Simulator
-- On the bottom right corner of the VSCode click on the device name <img src=''
+- On the bottom right corner of the VSCode click on the device name <img src='https://github.com/user-attachments/assets/31691bb0-55d7-400e-bba3-038d3675aef8' alt='device name' />
+- Open `lib/dart.main` in VSCode and Click the 'Play' button on the right <img src='https://github.com/user-attachments/assets/67066d02-227d-4e87-b12d-1399441953a1' alt='play button' />
+- It loads a while and then you can see the app in your iPhone Simulator
+  
