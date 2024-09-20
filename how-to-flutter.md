@@ -4,7 +4,7 @@
 
 https://docs.flutter.dev/get-started/install
 
-<details open>
+<details>
 	<summary>Open iPhone simulator</summary>
 	<br />
 	`open -a Simulator`
