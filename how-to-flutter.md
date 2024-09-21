@@ -62,4 +62,4 @@ fonts:
       - asset: fonts/IndieFlower-Regular.ttf
 ```
 
-- Upgrade packages on the top right <img src='' alt='upgrade' />
+- Upgrade packages on the top right <img src='https://github.com/user-attachments/assets/78d68145-faea-49bc-a2f8-d0ae1ad1de2f' alt='upgrade' />
