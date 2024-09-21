@@ -11,10 +11,12 @@ void main() => runApp(MaterialApp(
         child: Text(
           'Terve ukko!',
           style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 2,
-              color: Colors.grey[600]),
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            letterSpacing: 2,
+            color: Colors.grey[600],
+            fontFamily: 'IndieFlower',
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
