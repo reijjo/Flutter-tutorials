@@ -22,14 +22,6 @@ Mac:
 - Open `lib/dart.main` in VSCode and Click the 'Play' button on the right <img src='https://github.com/user-attachments/assets/7e1a71a7-ac94-4d07-9997-669b0d7308a8' alt='play button' />
 - It loads a while and then you can see the app in your iPhone Simulator
 
-### Reloading the app to see the changes
-
-#### Annoying way
-
-- Click the `Restart` button on the menu after making changes <img src='https://github.com/user-attachments/assets/e18fa805-5b19-4885-af6e-ee33abf76326' alt='restart' />
-
-#### Hot Reload
-
 ## Scaffold & AppBar
 
 Scaffold is a wrapper for layout widgets like `AppBar` and `body`
@@ -55,6 +47,10 @@ void main() => runApp(MaterialApp(
     )));
 
 ```
+
+### Reloading the app to see the changes
+
+- Click the `Restart` button on the menu after making changes <img src='https://github.com/user-attachments/assets/e18fa805-5b19-4885-af6e-ee33abf76326' alt='restart' />
 
 ## Colors & Fonts
 
@@ -102,3 +98,46 @@ void main() => runApp(MaterialApp(
       ),
     )));
 ```
+
+## Hot Reload
+
+- Make a `StatelessWidget` class under your main function and move your code to there
+
+```dart
+void main() => runApp(const MaterialApp(home: Home()));
+
+class Home extends StatelessWidget {
+  // Creates a Home widget that can be used as a constant, passing the key to its parent class.
+  const Home({super.key});
+
+  @override // Overrides the build defined in classes ancestor (StatelessWidget)
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('My First App'),
+        centerTitle: true,
+        backgroundColor: Colors.indigo[400],
+      ),
+      body: Center(
+        child: Text(
+          'Terve ukko!',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            letterSpacing: 2,
+            color: Colors.grey[600],
+            fontFamily: 'IndieFlower',
+          ),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Colors.indigo[400],
+        child: const Text('Click'),
+      ),
+    );
+  }
+}
+```
+
+- Change VSCode dart settings -> Open Settings -> Search `flutter` -> `Dart: Flutter Hot Reload On Save` -> `all`
