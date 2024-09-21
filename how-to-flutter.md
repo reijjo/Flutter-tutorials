@@ -28,6 +28,8 @@ Mac:
 
 - Click the `Restart` button on the menu after making changes <img src='https://github.com/user-attachments/assets/e18fa805-5b19-4885-af6e-ee33abf76326' alt='restart' />
 
+#### Hot Reload
+
 ## Scaffold & AppBar
 
 Scaffold is a wrapper for layout widgets like `AppBar` and `body`
