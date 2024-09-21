@@ -26,7 +26,7 @@ Mac:
 
 #### Annoying way
 
-- Click the `Restart` button on the menu after making changes
+- Click the `Restart` button on the menu after making changes <img src='https://github.com/user-attachments/assets/e18fa805-5b19-4885-af6e-ee33abf76326' alt='restart' />
 
 ## Scaffold & AppBar
 
