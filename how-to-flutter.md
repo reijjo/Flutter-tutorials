@@ -48,3 +48,18 @@ void main() => runApp(MaterialApp(
 ```
 
 ## Colors & Fonts
+
+Use Custom Fonts:
+
+- Download a font
+- Make folder `fonts` to your Flutter projects root folder
+- Open `pubspec.yaml` file in your projects root folder and add this to the part where to fonts are:
+
+```yaml
+fonts:
+  - family: IndieFlower
+    fonts:
+      - asset: fonts/IndieFlower-Regular.ttf
+```
+
+- Upgrade packages on the top right <img src='' alt='upgrade' />
