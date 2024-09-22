@@ -25,18 +25,7 @@ class Home extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.indigo[400],
       ),
-      body: Center(
-        child: Text(
-          'Terve ukko!',
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 2,
-            color: Colors.grey[600],
-            fontFamily: 'IndieFlower',
-          ),
-        ),
-      ),
+      body: Center(child: Image.asset('assets/viiva.jpg')),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         backgroundColor: Colors.indigo[400],

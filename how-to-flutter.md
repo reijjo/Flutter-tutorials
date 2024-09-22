@@ -141,3 +141,39 @@ class Home extends StatelessWidget {
 ```
 
 - Change VSCode dart settings -> Open Settings -> Search `flutter` -> `Dart: Flutter Hot Reload On Save` -> `all`
+
+## Images & Assets
+
+- Image from the web
+
+```dart
+child: Image(
+	image: NetworkImage('IMAGEURL')
+)
+```
+
+- Asset image: Make folder `assets` in the root of your app and add image to that folder
+- Open `pubspec.yaml` file in your projects root folder and add this to the part where to images are:
+
+```yaml
+assets:
+  - assets/
+```
+
+- Upgrade packages -> `flutter pub get` in the root of your app
+- Add image to your app
+
+```dart
+child: Image(
+  image: AssetImage('assets/IMAGENAME')
+)
+```
+
+- Shortcuts:
+
+```dart
+child: Image.asset('assets/IMAGENAME')
+child: Image.network('IMAGEURL')
+```
+
+## Buttons & Icons
