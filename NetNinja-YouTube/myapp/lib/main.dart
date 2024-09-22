@@ -25,7 +25,14 @@ class Home extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.indigo[400],
       ),
-      body: Center(child: Image.asset('assets/viiva.jpg')),
+      body: Center(
+          child: IconButton(
+        onPressed: () {
+          print('You clicked me!');
+        },
+        icon: const Icon(Icons.alternate_email),
+        color: Colors.amber,
+      )),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         backgroundColor: Colors.indigo[400],

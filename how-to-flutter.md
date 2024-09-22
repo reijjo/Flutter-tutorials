@@ -177,3 +177,102 @@ child: Image.network('IMAGEURL')
 ```
 
 ## Buttons & Icons
+
+- Icon
+
+```dart
+child: Icon(
+  Icons.airport_shuttle,
+  color: Colors.lightBlue,
+  size: 50,
+ )
+```
+
+- Button
+
+```dart
+child: ElevatedButton(
+  onPressed: () {
+    print('you clicked me');
+  },
+  style: ElevatedButton.styleFrom(
+    backgroundColor: Colors.lightBlue, // Set the background color
+  ),
+  child: const Text('click'),
+)
+```
+
+The `print('you clicked me')` shows in the `Debug Console` IMAGE HERE
+
+- Button With Icon
+
+```dart
+child: ElevatedButton.icon(
+  onPressed: () {
+    print('you clicked me');
+  },
+  icon: const Icon(Icons.mail),
+  label: const Text('mail me'),
+  style: ElevatedButton.styleFrom(backgroundColor: Colors.amber),
+)
+```
+
+- Icon Button
+
+```dart
+child: IconButton(
+  onPressed: () {
+    print('You clicked me!');
+  },
+  icon: const Icon(Icons.alternate_email),
+  color: Colors.amber,
+)
+```
+
+- Code so far
+
+```dart
+import 'package:flutter/material.dart';
+
+void main() => runApp(MaterialApp(
+    theme: ThemeData(
+      appBarTheme: const AppBarTheme(
+        backgroundColor: Colors.indigo,
+        titleTextStyle: TextStyle(color: Colors.white, fontSize: 20),
+        iconTheme: IconThemeData(color: Colors.white),
+      ),
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        foregroundColor: Colors.white,
+      ),
+    ),
+    home: const Home()));
+
+class Home extends StatelessWidget {
+  // Creates a Home widget that can be used as a constant, passing the key to its parent class.
+  const Home({super.key});
+
+  @override // Overrides the build defined in classes ancestor (StatelessWidget)
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('My First App'),
+        centerTitle: true,
+        backgroundColor: Colors.indigo[400],
+      ),
+      body: Center(
+          child: IconButton(
+        onPressed: () {
+          print('You clicked me!');
+        },
+        icon: const Icon(Icons.alternate_email),
+        color: Colors.amber,
+      )),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Colors.indigo[400],
+        child: const Text('Click'),
+      ),
+    );
+  }
+}
+```
