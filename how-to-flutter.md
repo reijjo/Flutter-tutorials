@@ -276,3 +276,25 @@ class Home extends StatelessWidget {
   }
 }
 ```
+
+## Containers & Padding
+
+- Container example:
+
+```dart
+body: Container(
+  padding: EdgeInsets.fromLTRB(10, 20, 30, 40),
+  margin: EdgeInsets.all(30),
+  color: Colors.grey[300],
+  child: Text('hello'),
+),
+```
+
+- Padding example:
+
+```dart
+body: const Padding(
+  padding: EdgeInsets.all(30),
+  child: Text('Hello, World!'),
+),
+```
