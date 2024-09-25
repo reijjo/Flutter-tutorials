@@ -298,3 +298,98 @@ body: const Padding(
   child: Text('Hello, World!'),
 ),
 ```
+
+## Rows
+
+- Row is basically the same as flexbox/grid in CSS
+- `Main Axis` is horizontal and `Cross Axis` is vertical
+
+```dart
+body: Row(
+  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: <Widget>[
+    const Text('hello, world'),
+    TextButton(
+      onPressed: () {},
+      style: TextButton.styleFrom(backgroundColor: Colors.amber),
+      child: const Text('Click me'),
+    ),
+    Container(
+      color: Colors.cyan,
+      padding: const EdgeInsets.all(30),
+      child: const Text('Inside container'),
+    )
+  ],
+),
+```
+
+## Columns
+
+```dart
+body: Column(
+  mainAxisAlignment: MainAxisAlignment.end,
+  crossAxisAlignment: CrossAxisAlignment.end,
+  children: <Widget>[
+    const Row(
+      children: [
+        Text('Hello'),
+        Text(' World'),
+      ],
+    ),
+    Container(
+      padding: const EdgeInsets.all(20),
+      color: Colors.cyan,
+      child: const Text('One'),
+    ),
+    Container(
+      padding: const EdgeInsets.all(30),
+      color: Colors.pinkAccent,
+      child: const Text('Two'),
+    ),
+    Container(
+      padding: const EdgeInsets.all(40),
+      color: Colors.amber,
+      child: const Text('Three'),
+    ),
+  ],
+),
+```
+
+## Expanded Widgets
+
+- Almost like a flexbox in CSS
+
+```dart
+body: Row(
+  children: <Widget>[
+    Expanded(
+        flex: 3, // Takes 3/6 of the available space
+        child: Image.asset('assets/ink.jpg')),
+    Expanded(
+      flex: 1, // Takes 1/6 of the available space
+      child: Container(
+        padding: const EdgeInsets.all(30),
+        color: Colors.cyan,
+        child: const Text('1'),
+      ),
+    ),
+    Expanded(
+      flex: 1, // Takes 1/6 of the available space
+      child: Container(
+        padding: const EdgeInsets.all(30),
+        color: Colors.pinkAccent[100],
+        child: const Text('2'),
+      ),
+    ),
+    Expanded(
+      flex: 1, // Takes 1/6 of the available space
+      child: Container(
+        padding: const EdgeInsets.all(30),
+        color: Colors.amber,
+        child: const Text('3'),
+      ),
+    ),
+  ],
+),
+```
