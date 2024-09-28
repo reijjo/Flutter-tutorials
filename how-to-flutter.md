@@ -494,6 +494,7 @@ class NinjaCard extends StatelessWidget {
 ## Stateful Widgets
 
 - You can change state of the variables (like useState in React)
+- Change `Stateless Widget` to `Stateful Widget` by hovering on the `Stateless Widget` text and look for the bulb icon to appear on the left and just click it
 - Code:
 
 ```dart
