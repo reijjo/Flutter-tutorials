@@ -22,7 +22,7 @@ Mac:
 - Open `lib/dart.main` in VSCode and Click the 'Play' button on the right <img src='https://github.com/user-attachments/assets/7e1a71a7-ac94-4d07-9997-669b0d7308a8' alt='play button' />
 - It loads a while and then you can see the app in your iPhone Simulator
 
-## Scaffold & AppBar
+### Scaffold & AppBar
 
 Scaffold is a wrapper for layout widgets like `AppBar` and `body`
 
@@ -48,11 +48,11 @@ void main() => runApp(MaterialApp(
 
 ```
 
-### Reloading the app to see the changes
+#### Reloading the app to see the changes
 
 - Click the `Restart` button on the menu after making changes <img src='https://github.com/user-attachments/assets/e18fa805-5b19-4885-af6e-ee33abf76326' alt='restart' />
 
-## Colors & Fonts
+### Colors & Fonts
 
 Use Custom Fonts:
 
@@ -99,7 +99,7 @@ void main() => runApp(MaterialApp(
     )));
 ```
 
-## Hot Reload
+### Hot Reload
 
 - Make a `StatelessWidget` class under your main function and move your code to there
 
@@ -142,7 +142,7 @@ class Home extends StatelessWidget {
 
 - Change VSCode dart settings -> Open Settings -> Search `flutter` -> `Dart: Flutter Hot Reload On Save` -> `all`
 
-## Images & Assets
+### Images & Assets
 
 - Image from the web
 
@@ -176,7 +176,7 @@ child: Image.asset('assets/IMAGENAME')
 child: Image.network('IMAGEURL')
 ```
 
-## Buttons & Icons
+### Buttons & Icons
 
 - Icon
 
@@ -277,7 +277,7 @@ class Home extends StatelessWidget {
 }
 ```
 
-## Containers & Padding
+### Containers & Padding
 
 - Container example:
 
@@ -299,7 +299,7 @@ body: const Padding(
 ),
 ```
 
-## Rows
+### Rows
 
 - Row is basically the same as flexbox/grid in CSS
 - `Main Axis` is horizontal and `Cross Axis` is vertical
@@ -324,7 +324,7 @@ body: Row(
 ),
 ```
 
-## Columns
+### Columns
 
 ```dart
 body: Column(
@@ -356,7 +356,7 @@ body: Column(
 ),
 ```
 
-## Expanded Widgets
+### Expanded Widgets
 
 - Almost like a flexbox in CSS
 
@@ -394,104 +394,9 @@ body: Row(
 ),
 ```
 
-## Code so far
+## Ninja ID Project
 
-```dart
-import 'package:flutter/material.dart';
-
-void main() {
-  runApp(const MaterialApp(
-    home: NinjaCard(),
-  ));
-}
-
-class NinjaCard extends StatelessWidget {
-  const NinjaCard({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[900],
-      appBar: AppBar(
-        title: const Text('Ninja ID Card'),
-        centerTitle: true,
-        backgroundColor: Colors.grey[850],
-        titleTextStyle: const TextStyle(
-            color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
-        elevation: 0,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(30, 40, 30, 0),
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              const Center(
-                child: CircleAvatar(
-                  backgroundImage: AssetImage('assets/Chun-Li.webp'),
-                  radius: 60,
-                ),
-              ),
-              Divider(
-                height: 90,
-                color: Colors.grey[800],
-              ),
-              const Text(
-                'NAME',
-                style: TextStyle(
-                  color: Colors.grey,
-                  letterSpacing: 2,
-                ),
-              ),
-              const SizedBox(height: 10),
-              Text(
-                'Chun-Li',
-                style: TextStyle(
-                    color: Colors.amberAccent[200],
-                    letterSpacing: 2,
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 30),
-              const Text(
-                'CURRENT NINJA LEVEL',
-                style: TextStyle(
-                  color: Colors.grey,
-                  letterSpacing: 2,
-                ),
-              ),
-              const SizedBox(height: 10),
-              Text(
-                '8',
-                style: TextStyle(
-                    color: Colors.amberAccent[200],
-                    letterSpacing: 2,
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 30),
-              Row(children: <Widget>[
-                Icon(
-                  Icons.email,
-                  color: Colors.grey[400],
-                ),
-                const SizedBox(width: 10),
-                Text(
-                  'chun.li@theninja.net',
-                  style: TextStyle(
-                    color: Colors.grey[400],
-                    fontSize: 18,
-                    letterSpacing: 1,
-                  ),
-                ),
-              ])
-            ]),
-      ),
-    );
-  }
-}
-```
-
-## Stateful Widgets
+### Stateful Widgets
 
 - You can change state of the variables (like useState in React)
 - Change `Stateless Widget` to `Stateful Widget` by hovering on the `Stateless Widget` text and look for the bulb icon to appear on the left and just click it
@@ -606,6 +511,51 @@ class _NinjaCardState extends State<NinjaCard> {
             ]),
       ),
     );
+  }
+}
+
+```
+
+## Quotes project
+
+- Create new project `quotes`
+
+```dart
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MaterialApp(
+    home: QuoteList(),
+  ));
+}
+
+class QuoteList extends StatefulWidget {
+  const QuoteList({super.key});
+
+  @override
+  _QuoteListState createState() => _QuoteListState();
+}
+
+class _QuoteListState extends State<QuoteList> {
+  List<String> quotes = [
+    'Be yourself; everyone else is already taken',
+    'I have nothing to declare except my genius',
+    'The truth is rarely pure and never simple'
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: Colors.grey[200],
+        appBar: AppBar(
+          title: const Text('Awesome Quotes'),
+          centerTitle: true,
+          backgroundColor: Colors.redAccent,
+          foregroundColor: Colors.white,
+        ),
+        body: Column(
+          children: quotes.map((quote) => Text(quote)).toList(),
+        ));
   }
 }
 
