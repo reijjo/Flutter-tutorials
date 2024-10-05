@@ -797,3 +797,160 @@ class QuoteListState extends State<QuoteList> {
   }
 }
 ```
+
+### Functions as Parameters
+
+- `main.dart`
+
+```dart
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+      backgroundColor: Colors.grey[200],
+      appBar: AppBar(
+        title: const Text('Awesome Quotes'),
+        centerTitle: true,
+        backgroundColor: Colors.redAccent,
+        foregroundColor: Colors.white,
+      ),
+      body: Column(
+        children: quotes
+            .map((quote) => QuoteCard(
+                quote: quote,
+                delete: () {
+                  setState(() {
+                    quotes.remove(quote);
+                  });
+                }))
+            .toList(),
+      ));
+}
+```
+
+- `quote_card.dart`
+
+```dart
+import 'package:flutter/material.dart';
+import 'quote.dart';
+
+class QuoteCard extends StatelessWidget {
+  final Quote quote;
+  final VoidCallback delete;
+  const QuoteCard({super.key, required this.quote, required this.delete});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0),
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Text(
+              quote.text,
+              style: TextStyle(fontSize: 18.0, color: Colors.grey[600]),
+            ),
+            const SizedBox(height: 6.0),
+            Text(
+              quote.author,
+              style: TextStyle(fontSize: 14.0, color: Colors.grey[800]),
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            TextButton.icon(
+              onPressed: delete,
+              label: const Text('delete quote'),
+              icon: const Icon(Icons.delete),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+```
+
+## World Time project
+
+- Create new project `Shift-CMD-P` -> `Flutter: New Project` -> `Application` -> Choose folder -> Project name `world_time`
+- Delete `test` folder
+- Make a new folder inside the `lib` folder named `pages` -> Create `home.dart`, `loading.dart` and `choose_location.dart` files inside that folder
+- `main.dart`:
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:world_time/pages/home.dart';
+
+void main() {
+  runApp(const MaterialApp(home: Home()));
+}
+
+```
+
+- `home.dart`:
+
+```dart
+import 'package:flutter/material.dart';
+
+class Home extends StatefulWidget {
+  const Home({super.key});
+
+  @override
+  HomeState createState() => HomeState();
+}
+
+class HomeState extends State<Home> {
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: SafeArea(child: Text('home screen')),
+    );
+  }
+}
+```
+
+- `loading.dart`:
+
+```dart
+import 'package:flutter/material.dart';
+
+class Loading extends StatefulWidget {
+  const Loading({super.key});
+
+  @override
+  State<Loading> createState() => _LoadingState();
+}
+
+class _LoadingState extends State<Loading> {
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: Text('loading screen'),
+    );
+  }
+}
+```
+
+- `choose_location.dart`:
+
+```dart
+import 'package:flutter/material.dart';
+
+class ChooseLocation extends StatefulWidget {
+  const ChooseLocation({super.key});
+
+  @override
+  State<ChooseLocation> createState() => _ChooseLocationState();
+}
+
+class _ChooseLocationState extends State<ChooseLocation> {
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: Text('Choose location'),
+    );
+  }
+}
+```
