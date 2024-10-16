@@ -1161,3 +1161,116 @@ class _ChooseLocationState extends State<ChooseLocation> {
 }
 
 ```
+
+### Flutter packages (http)
+
+- Like `npm` packages in React
+- Go to `pub.dev/flutter` and search for `http`
+- Install the package with the root of your apps folder with: `dart pub add http` or `flutter pub add http`
+- It adds the package to your projects dependecies in your `pubspec.yaml` file:
+
+```yaml
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.8
+  http: ^1.2.2
+```
+
+`main.dart`:
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:world_time/pages/home.dart';
+import 'package:world_time/pages/loading.dart';
+import 'package:world_time/pages/choose_location.dart';
+
+void main() => runApp(MaterialApp(initialRoute: '/', routes: {
+      '/': (context) => const Loading(),
+      '/home': (context) => const Home(),
+      '/location': (context) => const ChooseLocation(),
+    }));
+
+```
+
+`loading.dart`:
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'dart:convert';
+
+class Loading extends StatefulWidget {
+  const Loading({super.key});
+
+  @override
+  State<Loading> createState() => _LoadingState();
+}
+
+class _LoadingState extends State<Loading> {
+  void getData() async {
+    Response response =
+        await get(Uri.parse('https://jsonplaceholder.typicode.com/todos/1'));
+    Map data = jsonDecode(response.body);
+    print(data);
+    print(data['title']);
+  }
+
+  // Runs first when the state object is created
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: Text('loading screen'),
+    );
+  }
+}
+
+```
+
+`choose_location.dart`:
+
+```dart
+import 'package:flutter/material.dart';
+
+class ChooseLocation extends StatefulWidget {
+  const ChooseLocation({super.key});
+
+  @override
+  State<ChooseLocation> createState() => _ChooseLocationState();
+}
+
+class _ChooseLocationState extends State<ChooseLocation> {
+  int counter = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: Colors.grey[200],
+        appBar: AppBar(
+          backgroundColor: Colors.blue[700],
+          title: const Text('Choose a Location'),
+          titleTextStyle: const TextStyle(color: Colors.white, fontSize: 20),
+          iconTheme: const IconThemeData(color: Colors.white),
+          centerTitle: true,
+          elevation: 0,
+        ),
+        body: ElevatedButton(
+            onPressed: () {
+              setState(() {
+                counter += 1;
+              });
+            },
+            child: Text('Counter is $counter')));
+  }
+}
+
+```
