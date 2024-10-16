@@ -954,3 +954,210 @@ class _ChooseLocationState extends State<ChooseLocation> {
   }
 }
 ```
+
+### Maps & Routing
+
+- Update `main.dart` file to have the routing:
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:world_time/pages/home.dart';
+import 'package:world_time/pages/loading.dart';
+import 'package:world_time/pages/choose_location.dart';
+
+void main() => runApp(MaterialApp(initialRoute: '/home', routes: {
+      '/': (context) => const Loading(),
+      '/home': (context) => const Home(),
+      '/location': (context) => const ChooseLocation(),
+    }));
+
+```
+
+- And other files too
+- `home.dart`
+
+```dart
+import 'package:flutter/material.dart';
+
+class Home extends StatefulWidget {
+  const Home({super.key});
+
+  @override
+  HomeState createState() => HomeState();
+}
+
+class HomeState extends State<Home> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+          child: Column(children: <Widget>[
+        TextButton.icon(
+            onPressed: () {
+              Navigator.pushNamed(context, '/location');
+            },
+            icon: const Icon(Icons.edit_location),
+            label: const Text('Edit Location'))
+      ])),
+    );
+  }
+}
+
+```
+
+- `choose_location.dart`:
+
+```dart
+import 'package:flutter/material.dart';
+
+class ChooseLocation extends StatefulWidget {
+  const ChooseLocation({super.key});
+
+  @override
+  State<ChooseLocation> createState() => _ChooseLocationState();
+}
+
+class _ChooseLocationState extends State<ChooseLocation> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.grey[200],
+      appBar: AppBar(
+        backgroundColor: Colors.blue[700],
+        title: const Text('Choose a Location'),
+        titleTextStyle: const TextStyle(color: Colors.white, fontSize: 20),
+        iconTheme: const IconThemeData(color: Colors.white),
+        centerTitle: true,
+        elevation: 0,
+      ),
+      body: const Text('Choose location screen'),
+    );
+  }
+}
+
+```
+
+### Widget Lifecycle
+
+#### Stateless Widget
+
+- Can't have state that changes over time
+- Data doesn't change in Stateless Widget
+- Build function only runs once
+
+#### Stateful Widget
+
+- State can change over time
+- setState() triggers the build function
+- `choose_location.dart`:
+
+```dart
+import 'package:flutter/material.dart';
+
+class ChooseLocation extends StatefulWidget {
+  const ChooseLocation({super.key});
+
+  @override
+  State<ChooseLocation> createState() => _ChooseLocationState();
+}
+
+class _ChooseLocationState extends State<ChooseLocation> {
+  int counter = 0;
+  // Runs first when the state object is created
+  @override
+  void initState() {
+    super.initState();
+    print('initState function ran');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    print('build function ran');
+
+    return Scaffold(
+        backgroundColor: Colors.grey[200],
+        appBar: AppBar(
+          backgroundColor: Colors.blue[700],
+          title: const Text('Choose a Location'),
+          titleTextStyle: const TextStyle(color: Colors.white, fontSize: 20),
+          iconTheme: const IconThemeData(color: Colors.white),
+          centerTitle: true,
+          elevation: 0,
+        ),
+        body: ElevatedButton(
+            onPressed: () {
+              setState(() {
+                counter += 1;
+              });
+            },
+            child: Text('Counter is $counter')));
+  }
+}
+
+```
+
+### Asynchronous Code
+
+- Quite similar than in JavaScript
+- `Future` is like a `Promise` in JS
+- `async/await` is basically the same as in JS
+  `choose_location.dart`:
+
+```dart
+import 'package:flutter/material.dart';
+
+class ChooseLocation extends StatefulWidget {
+  const ChooseLocation({super.key});
+
+  @override
+  State<ChooseLocation> createState() => _ChooseLocationState();
+}
+
+class _ChooseLocationState extends State<ChooseLocation> {
+  int counter = 0;
+
+  void getData() async {
+    // Simulate network request for a username
+    String username = await Future.delayed(const Duration(seconds: 3), () {
+      return 'Yoshi';
+    });
+
+    // Simulate network request to get bio of the username
+    String bio = await Future.delayed(const Duration(seconds: 2), () {
+      return 'Vegan, Musician & Egg collector';
+    });
+
+    print('$username - $bio');
+  }
+
+  // Runs first when the state object is created
+  @override
+  void initState() {
+    super.initState();
+    getData();
+    print('Hey there!');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: Colors.grey[200],
+        appBar: AppBar(
+          backgroundColor: Colors.blue[700],
+          title: const Text('Choose a Location'),
+          titleTextStyle: const TextStyle(color: Colors.white, fontSize: 20),
+          iconTheme: const IconThemeData(color: Colors.white),
+          centerTitle: true,
+          elevation: 0,
+        ),
+        body: ElevatedButton(
+            onPressed: () {
+              setState(() {
+                counter += 1;
+              });
+            },
+            child: Text('Counter is $counter')));
+  }
+}
+
+```
