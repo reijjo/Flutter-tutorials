@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
 
@@ -10,19 +11,28 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
-  void getData() async {
-    Response response =
-        await get(Uri.parse('https://jsonplaceholder.typicode.com/todos/1'));
+  void getTime() async {
+    String apiKey = dotenv.env['ABSTRACTAPI_APIKEY'] ?? 'ApiKey not found';
+
+    // Make the request
+    Response response = await get(Uri.parse(
+        'https://timezone.abstractapi.com/v1/current_time/?api_key=$apiKey&location=Paris'));
     Map data = jsonDecode(response.body);
-    print(data);
-    print(data['title']);
+    // Get properties from data
+    String datetime = data['datetime'];
+    int offset = data['gmt_offset'];
+
+    // Create DateTime object
+    DateTime now = DateTime.parse(datetime);
+    now = now.add(Duration(hours: offset));
+    print(now);
   }
 
   // Runs first when the state object is created
   @override
   void initState() {
     super.initState();
-    getData();
+    getTime();
   }
 
   @override
