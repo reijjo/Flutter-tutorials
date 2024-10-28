@@ -13,34 +13,48 @@ class HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     data = ModalRoute.of(context)?.settings.arguments as Map<dynamic, dynamic>;
-    print('HALOO');
     print(data);
 
+    // Set background
+    String bgImage = data['isDaytime'] ? 'day.png' : 'night.png';
+
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(0, 120, 0, 0),
-        child: SafeArea(
-            child: Column(children: <Widget>[
-          TextButton.icon(
-              onPressed: () {
-                Navigator.pushNamed(context, '/location');
-              },
-              icon: const Icon(Icons.edit_location),
-              label: const Text('Edit Location')),
-          const SizedBox(height: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(data['location'],
-                  style: const TextStyle(letterSpacing: 2, fontSize: 28))
-            ],
-          ),
-          const SizedBox(height: 20),
-          Text(
-            data['time'],
-            style: const TextStyle(fontSize: 66),
-          )
-        ])),
+      body: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('assets/$bgImage'), fit: BoxFit.cover)),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(0, 120, 0, 0),
+          child: SafeArea(
+              child: Column(children: <Widget>[
+            TextButton.icon(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/location');
+                },
+                icon: Icon(
+                  Icons.edit_location,
+                  color: Colors.grey[300],
+                ),
+                label: Text('Edit Location',
+                    style: TextStyle(
+                      color: Colors.grey[300],
+                    ))),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(data['location'],
+                    style: const TextStyle(
+                        letterSpacing: 2, fontSize: 28, color: Colors.white))
+              ],
+            ),
+            const SizedBox(height: 20),
+            Text(
+              data['time'],
+              style: const TextStyle(fontSize: 66, color: Colors.white),
+            )
+          ])),
+        ),
       ),
     );
   }

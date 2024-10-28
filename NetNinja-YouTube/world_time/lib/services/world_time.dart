@@ -8,8 +8,13 @@ class WorldTime {
   late String time; // Time in that location
   String flag; // Url to an asset flag icon
   String url; // Location url for api endpoint
+  late bool isDaytime; // True or false if daytime or not
 
-  WorldTime({required this.location, required this.flag, required this.url});
+  WorldTime({
+    required this.location,
+    required this.flag,
+    required this.url,
+  });
 
   Future<void> getTime() async {
     String apiKey = dotenv.env['ABSTRACTAPI_APIKEY'] ?? 'ApiKey not found';
@@ -27,7 +32,8 @@ class WorldTime {
       DateTime now = DateTime.parse(datetime);
       now = now.add(Duration(hours: offset));
 
-      // Set the time property
+      // Set the time property & isDayTime
+      isDaytime = now.hour > 6 && now.hour < 20 ? true : false;
       time = DateFormat.jm().format(now);
     } catch (error) {
       print('Caught error: $error');
