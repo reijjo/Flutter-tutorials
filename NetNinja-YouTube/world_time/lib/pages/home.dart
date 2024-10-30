@@ -12,7 +12,9 @@ class HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    data = ModalRoute.of(context)?.settings.arguments as Map<dynamic, dynamic>;
+    data = data.isNotEmpty
+        ? data
+        : ModalRoute.of(context)?.settings.arguments as Map<dynamic, dynamic>;
     print(data);
 
     // Set background
@@ -28,8 +30,17 @@ class HomeState extends State<Home> {
           child: SafeArea(
               child: Column(children: <Widget>[
             TextButton.icon(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/location');
+                onPressed: () async {
+                  dynamic result =
+                      await Navigator.pushNamed(context, '/location');
+                  setState(() {
+                    data = {
+                      'time': result['time'],
+                      'location': result['location'],
+                      'isDaytime': result['isDaytime'],
+                      'flag': result['flag']
+                    };
+                  });
                 },
                 icon: Icon(
                   Icons.edit_location,
